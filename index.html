@@ -23,7 +23,7 @@
   </head>
   <body>
     <audio class="song" autoplay loop>
-        <source src="hbd.mp3"></source>
+        <source src="/hbd.mp3"></source>
     </audio>
     <div id="wrapper">
       <div class="flag__birthday">
@@ -294,10 +294,10 @@
     const fcMobile = mobile();
     if (window.innerWidth < 768) {
       setTimeout(() => {
-        fcMobile.timeout("26", document.querySelector(".day"));
+        fcMobile.timeout("24", document.querySelector(".day"));
       }, 5000);
       setTimeout(() => {
-        fcMobile.timeout("10", document.querySelector(".month"));
+        fcMobile.timeout("01", document.querySelector(".month"));
       }, 6000);
     }
   </script>
