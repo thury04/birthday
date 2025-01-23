@@ -83,7 +83,7 @@ audio {
   width: 100%;
   position: relative;
   display: flex;
-  padding-top: 3rem;
+  padding-top: 6rem;
 }
 .content .left,
 .content .right {
@@ -631,7 +631,7 @@ audio {
   opacity: 0;
   position: absolute;
   right: 20px;
-  top: -50px;
+  top: -45px;
 }
 .love__img.animationOp {
   animation: opacityHeart 1s 1s forwards;
