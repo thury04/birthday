@@ -3,9 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="icon"
-      href="./images/cake128.png"/>
+    <link rel="icon" href="./images/cake128.png" />
     <title>Hoang's Birthday</title>
     <link rel="stylesheet" href="style.css" />
     <link
@@ -22,11 +20,17 @@
     ></script>
   </head>
   <body>
-    <audio class="song" autoplay loop>
-        <source src="/hbd.mp3"></source>
+    <div id="initialScreen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #cad2d3; display: flex; justify-content: center; align-items: center; z-index: 9999;">
+      <button id="startButton" style="font-size: 20px; padding: 10px 20px;">Bắt đầu</button>
+    </div>
+    <audio id="birthdaySong" class="song" loop>
+      <source src="hbd.mp3" type="audio/mpeg">
     </audio>
     <div id="wrapper">
-      <div class="flag__birthday">
+        </head>
+        <body>
+        
+          <div id="wrapper"><div class="flag__birthday">
         <img src="./images/1.png" alt="" width="350" class="flag__left" />
         <img src="./images/1.png" alt="" width="350" class="flag__right" />
       </div>
@@ -60,9 +64,7 @@
             <span></span>
           </div>
           <div class="btn">
-            <button id="btn__letter">
-              Nhận thư nè 😘📧
-            </button>
+            <button id="btn__letter">Nhận thư nè 😘📧</button>
           </div>
         </div>
         <div class="right">
@@ -186,8 +188,45 @@
     </div>
   </body>
   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const audio = document.getElementById("birthdaySong");
+      const startButton = document.getElementById("startButton");
+      const initialScreen = document.getElementById("initialScreen");
+
+      startButton.addEventListener("click", function () {
+        audio.play().then(() => {
+          initialScreen.style.display = "none";
+          startAnimations();
+        }).catch(error => {
+          console.log("Playback prevented. Please interact with the document first.");
+        });
+      });
+
+      function startAnimations() {
+        // Place all your existing animation code here
+        setTimeout(function () {
+          timeDatetxt = setInterval(function () {
+            if (currentIndex < charArrDate.length) {
+              date__of__birth.textContent += charArrDate[currentIndex];
+              currentIndex++;
+            } else {
+              let i = document.createElement("i");
+              i.className = "fa-solid fa-star";
+              document.querySelector(".date__of__birth").prepend(i);
+              document
+                .querySelector(".date__of__birth")
+                .appendChild(i.cloneNode(true));
+              clearInterval(timeDatetxt);
+            }
+          }, 100);
+        }, 12000);
+
+        // ... rest of your animation code ...
+      }
+    });
     let datetxt = "24/01/1994";
-    let datatxtletter = "Hôm nay, ngày 24/01/2025, em chúc chàng trai của em có thật nhiều sức khỏe, luôn gặp may mắn🍀. Chúc anh thành công trên con đường mình chọn. Anh hãy yên tâm làm việc nhé. Em yêu anh💕. Nguyễn Thu Thủy thân gửi !";
+    let datatxtletter =
+      "Hôm nay, ngày 24/01/2025, em chúc chàng trai của em có thật nhiều sức khỏe, luôn gặp may mắn🍀. Chúc anh thành công trên con đường mình chọn. Anh hãy yên tâm làm việc nhé. Em yêu anh💕. Nguyễn Thu Thủy thân gửi !";
     let titleLetter = "Gửi anh ";
     let charArrDate = datetxt.split("");
     let charArrDateLetter = datatxtletter.split("");
@@ -197,6 +236,8 @@
     let currentIndexTitle = 0;
     let date__of__birth = document.querySelector(".date__of__birth span");
     let text__letter = document.querySelector(".text__letter p");
+
+    // ... rest of your existing JavaScript code ...
     setTimeout(function () {
       timeDatetxt = setInterval(function () {
         if (currentIndex < charArrDate.length) {
