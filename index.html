@@ -177,17 +177,31 @@
                   <p></p>
                 </div>
                 <img id="mewmew" width="80" src="./images/mewmew.gif" alt="" />
-              </div>
-            </div>
-          </div>
-          <div class="close">
-            <i class="fa-solid fa-xmark"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
-  <script>
+                <!-- Add this HTML for the slideshow inside the body tag -->
+              <div id="slideshow" class="slideshow">
+                  <div class="slideshow-container">
+                    <img class="slide" src="./images/slide1.jpg" alt="Slide 1" style="display: none;">
+                    <img class="slide" src="./images/slide2.jpg" alt="Slide 2" style="display: none;">
+                    <img class="slide" src="./images/slide3.jpg" alt="Slide 3" style="display: none;">
+                    <img class="slide" src="./images/slide4.jpg" alt="Slide 4" style="display: none;">
+                    <img class="slide" src="./images/slide5.jpg" alt="Slide 5" style="display: none;">
+                    <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+                    <button class="next" onclick="changeSlide(1)">&#10095;</button>
+                  </div>
+                  <!-- Add this button inside your slideshow container -->
+                  <button class="close-slideshow">&times;</button>
+                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="close">
+                          <i class="fa-solid fa-xmark"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </body>
+                <script>
     document.addEventListener("DOMContentLoaded", function () {
       const audio = document.getElementById("birthdaySong");
       const startButton = document.getElementById("startButton");
@@ -224,7 +238,7 @@
     });
     let datetxt = "24/01/1994";
     let datatxtletter =
-      "Hôm nay, ngày 24/01/2025, em chúc chàng trai của em có thật nhiều sức khỏe, luôn gặp may mắn🍀. Chúc anh thành công trên con đường mình chọn. Anh hãy yên tâm làm việc nhé. Em yêu anh💕. Nguyễn Thu Thủy thân gửi !";
+      "Hôm nay, ngày 24/01/2025, em chúc chàng trai của em có thật nhiều sức khỏe, luôn gặp may mắn🍀. Chúc anh thành công trên con đường mình chọn. Anh hãy yên tâm làm việc nhé. Em yêu anh💕. Nguyễn Thu Thủy thân gửi ! (chạm vào bé mèo để xem quà của anh nha ^^)";
     let titleLetter = "Gửi anh ";
     let charArrDate = datetxt.split("");
     let charArrDateLetter = datatxtletter.split("");
@@ -310,6 +324,55 @@
       $(".box__letter").slideUp();
       $(".letter__border").slideUp();
     });
+    let currentSlideIndex = 0;
+
+  // Khi click vào mèo, mở slideshow
+  document.getElementById("mewmew").addEventListener("click", function (event) {
+    event.preventDefault();
+    openSlideshow(); // Mở slideshow
+  });
+
+  // Hàm mở slideshow
+  function openSlideshow() {
+    document.getElementById("slideshow").style.display = "flex"; // Hiển thị slideshow
+    showSlide(currentSlideIndex); // Hiển thị slide hiện tại
+    // Gắn sự kiện cho nút đóng chỉ khi slideshow được mở
+    document.querySelector(".close-slideshow").style.display = "block"; // Hiển thị nút đóng
+    document.querySelector(".close-slideshow").addEventListener("click", function () {
+      closeSlideshow(); // Đóng slideshow khi click
+    });
+  }
+
+  // Hàm đóng slideshow
+  function closeSlideshow() {
+    document.getElementById("slideshow").style.display = "none"; // Ẩn slideshow
+  }
+
+  function showSlide(n) {
+    const slides = document.getElementsByClassName("slide");
+    if (n >= slides.length) {
+      currentSlideIndex = 0;
+    }
+    if (n < 0) {
+      currentSlideIndex = slides.length - 1;
+    }
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slides[currentSlideIndex].style.display = "block";
+  }
+  document.querySelector(".prev").addEventListener("click", function () {
+  changeSlide(-1);
+});
+
+document.querySelector(".next").addEventListener("click", function () {
+  changeSlide(1);
+});
+
+function changeSlide(n) {
+  currentSlideIndex += n;
+  showSlide(currentSlideIndex);
+}
 
     //mobile
 
